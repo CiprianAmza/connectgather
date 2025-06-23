@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${participant.id == null ? 'Crează Participant Nou' : 'Editează Participant'}"></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .form-group label {
+            font-weight: bold;
+        }
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+<div class="container my-4">
+    <h2 th:text="${participant.id == null ? 'Crează Participant Nou' : 'Editează Participant'}" class="mb-4"></h2>
+
+    <form th:action="@{/participants}" th:object="${participant}" method="post">
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="form-group">
+            <label for="name">Nume Participant:</label>
+            <input type="text" id="name" th:field="*{name}" class="form-control" th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}" />
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" th:field="*{email}" class="form-control" th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : ''}" />
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+            <div class="error-message" th:if="${#fields.hasGlobalErrors()}">
+                <p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Telefon:</label>
+            <input type="tel" id="phone" th:field="*{phone}" class="form-control" th:classappend="${#fields.hasErrors('phone') ? 'is-invalid' : ''}" />
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></div>
+        </div>
+
+        <button type="submit" class="btn btn-success">Salvează Participant</button>
+        <a href="/participants" class="btn btn-secondary">Anulează</a>
+    </form>
+</div>
+</body>
+</html>

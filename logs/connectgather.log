@@ -1,0 +1,466 @@
+2025-06-23 10:21:42.859 ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Failed to bind properties under 'logging.level.org.hibernate.type.descriptor.sql' to org.springframework.boot.logging.LogLevel:
+
+    Property: logging.level.org.hibernate.type.descriptor.sql
+    Value: "TRACE # Deja setat dinainte"
+    Origin: class path resource [application.properties] - 19:49
+    Reason: failed to convert java.lang.String to org.springframework.boot.logging.LogLevel (caused by java.lang.IllegalArgumentException: No enum constant org.springframework.boot.logging.LogLevel.TRACE # Deja setat dinainte)
+
+Action:
+
+Update your application's configuration. The following values are valid:
+
+    DEBUG
+    ERROR
+    FATAL
+    INFO
+    OFF
+    TRACE
+    WARN
+
+2025-06-23 10:22:02.017 INFO  c.e.d.ConnectGatherMonolithicApplication - Starting ConnectGatherMonolithicApplication using Java 23.0.1 with PID 21259 (/Users/ciprian.amza/Downloads/demo 2/target/classes started by ciprian.amza in /Users/ciprian.amza/Downloads/demo 2)
+2025-06-23 10:22:02.018 DEBUG c.e.d.ConnectGatherMonolithicApplication - Running with Spring Boot v3.3.1, Spring v6.1.10
+2025-06-23 10:22:02.019 INFO  c.e.d.ConnectGatherMonolithicApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-23 10:22:02.470 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-23 10:22:02.494 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 21 ms. Found 4 JPA repository interfaces.
+2025-06-23 10:22:02.824 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-23 10:22:02.832 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-23 10:22:02.832 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.25]
+2025-06-23 10:22:02.857 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-23 10:22:02.857 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 800 ms
+2025-06-23 10:22:02.897 INFO  o.s.j.d.e.EmbeddedDatabaseFactory - Starting embedded database: url='jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2025-06-23 10:22:02.992 INFO  o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-06-23 10:22:03.085 DEBUG o.s.o.j.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'default'
+2025-06-23 10:22:03.093 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-23 10:22:03.118 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2025-06-23 10:22:03.131 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-06-23 10:22:03.248 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-23 10:22:03.693 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-23 10:22:03.706 DEBUG org.hibernate.SQL - 
+    alter table if exists participants 
+       alter column phone set data type varchar(255)
+2025-06-23 10:22:03.710 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-23 10:22:03.775 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:22:03.792 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:22:03.820 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:22:03.835 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:22:03.835 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:22:03.846 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:22:03.874 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:22:03.890 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:22:03.890 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:22:03.892 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:22:03.904 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:22:03.905 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:22:03.908 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:22:03.973 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-23 10:22:04.005 INFO  o.s.s.p.JdbcUserDetailsManager - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+2025-06-23 10:22:04.038 INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2025-06-23 10:22:04.279 INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-06-23 10:22:04.320 DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, CsrfFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-06-23 10:22:04.521 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-06-23 10:22:04.533 INFO  c.e.d.ConnectGatherMonolithicApplication - Started ConnectGatherMonolithicApplication in 2.815 seconds (process running for 3.304)
+2025-06-23 10:28:52.180 INFO  c.e.d.c.EventControllerIntegrationTest - Starting EventControllerIntegrationTest using Java 23.0.1 with PID 22147 (started by ciprian.amza in /Users/ciprian.amza/Downloads/demo 2)
+2025-06-23 10:28:52.181 DEBUG c.e.d.c.EventControllerIntegrationTest - Running with Spring Boot v3.3.1, Spring v6.1.10
+2025-06-23 10:28:52.181 INFO  c.e.d.c.EventControllerIntegrationTest - The following 1 profile is active: "test"
+2025-06-23 10:28:52.549 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-23 10:28:52.573 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 21 ms. Found 4 JPA repository interfaces.
+2025-06-23 10:28:52.782 INFO  o.s.j.d.e.EmbeddedDatabaseFactory - Starting embedded database: url='jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2025-06-23 10:28:52.930 DEBUG o.s.o.j.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'default'
+2025-06-23 10:28:52.940 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-23 10:28:52.963 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2025-06-23 10:28:52.976 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-06-23 10:28:53.090 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-23 10:28:53.490 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-23 10:28:53.503 DEBUG org.hibernate.SQL - 
+    alter table if exists participants 
+       alter column phone set data type varchar(255)
+2025-06-23 10:28:53.507 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-23 10:28:53.567 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:28:53.582 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:28:53.608 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:28:53.622 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:28:53.622 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:28:53.631 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:28:53.653 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:28:53.658 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:28:53.658 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:28:53.659 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:28:53.681 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:28:53.682 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:28:53.683 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:28:53.717 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-23 10:28:53.734 INFO  o.s.s.p.JdbcUserDetailsManager - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+2025-06-23 10:28:53.750 INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2025-06-23 10:28:53.968 INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-06-23 10:28:54.003 DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, CsrfFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-06-23 10:28:54.184 INFO  o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-06-23 10:28:54.210 INFO  o.s.b.t.m.w.SpringBootMockServletContext - Initializing Spring TestDispatcherServlet ''
+2025-06-23 10:28:54.210 INFO  o.s.t.w.s.TestDispatcherServlet - Initializing Servlet ''
+2025-06-23 10:28:54.210 INFO  o.s.t.w.s.TestDispatcherServlet - Completed initialization in 0 ms
+2025-06-23 10:28:54.236 INFO  c.e.d.c.EventControllerIntegrationTest - Started EventControllerIntegrationTest in 2.244 seconds (process running for 2.851)
+2025-06-23 10:28:54.280 DEBUG o.s.orm.jpa.JpaTransactionManager - Creating new transaction with name [com.example.demo.controller.EventControllerIntegrationTest.testDeleteEvent]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-06-23 10:28:54.280 DEBUG o.s.orm.jpa.JpaTransactionManager - Opened new EntityManager [SessionImpl(1211349891<open>)] for JPA transaction
+2025-06-23 10:28:54.282 DEBUG o.s.orm.jpa.JpaTransactionManager - Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@72548e3c]
+2025-06-23 10:28:54.654 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(1211349891<open>)] for JPA transaction
+2025-06-23 10:28:54.654 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:54.671 DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        participants
+        (email, name, phone, id) 
+    values
+        (?, ?, ?, default)
+2025-06-23 10:28:54.681 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(1211349891<open>)] for JPA transaction
+2025-06-23 10:28:54.681 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:54.681 DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        locations
+        (address, description, name, id) 
+    values
+        (?, ?, ?, default)
+2025-06-23 10:28:54.682 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(1211349891<open>)] for JPA transaction
+2025-06-23 10:28:54.682 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:54.685 DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        events
+        (description, end_time, location_id, name, organizer_id, start_time, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+2025-06-23 10:28:54.690 DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Created HttpSession as SecurityContext is non-default
+2025-06-23 10:28:54.690 DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=adminuser, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]] to HttpSession [org.springframework.mock.web.MockHttpSession@a5f5b96]
+2025-06-23 10:28:54.697 DEBUG o.s.security.web.FilterChainProxy - Securing GET /events/delete/1
+2025-06-23 10:28:54.702 DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=adminuser, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]]
+2025-06-23 10:28:54.705 DEBUG o.s.security.web.FilterChainProxy - Secured GET /events/delete/1
+2025-06-23 10:28:54.712 INFO  c.e.demo.controller.EventController - Request to delete event with ID: 1
+2025-06-23 10:28:54.713 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(1211349891<open>)] for JPA transaction
+2025-06-23 10:28:54.713 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:54.713 INFO  c.example.demo.service.EventService - Deleting event with ID: 1
+2025-06-23 10:28:54.713 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(1211349891<open>)] for JPA transaction
+2025-06-23 10:28:54.713 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:54.862 DEBUG org.hibernate.SQL - 
+    select
+        count(*) 
+    from
+        events e1_0 
+    where
+        e1_0.id=?
+2025-06-23 10:28:54.864 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(1211349891<open>)] for JPA transaction
+2025-06-23 10:28:54.864 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:54.867 INFO  c.example.demo.service.EventService - Event with ID 1 deleted successfully.
+2025-06-23 10:28:54.877 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(1211349891<open>)] for JPA transaction
+2025-06-23 10:28:54.877 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:54.880 DEBUG o.s.orm.jpa.JpaTransactionManager - Initiating transaction rollback
+2025-06-23 10:28:54.881 DEBUG o.s.orm.jpa.JpaTransactionManager - Rolling back JPA transaction on EntityManager [SessionImpl(1211349891<open>)]
+2025-06-23 10:28:54.881 DEBUG o.s.orm.jpa.JpaTransactionManager - Closing JPA EntityManager [SessionImpl(1211349891<open>)] after transaction
+2025-06-23 10:28:54.884 DEBUG o.s.orm.jpa.JpaTransactionManager - Creating new transaction with name [com.example.demo.controller.EventControllerIntegrationTest.testSaveEventValidationFailure]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-06-23 10:28:54.884 DEBUG o.s.orm.jpa.JpaTransactionManager - Opened new EntityManager [SessionImpl(456820369<open>)] for JPA transaction
+2025-06-23 10:28:54.885 DEBUG o.s.orm.jpa.JpaTransactionManager - Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@669074df]
+2025-06-23 10:28:54.886 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(456820369<open>)] for JPA transaction
+2025-06-23 10:28:54.886 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:54.886 DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        participants
+        (email, name, phone, id) 
+    values
+        (?, ?, ?, default)
+2025-06-23 10:28:54.887 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(456820369<open>)] for JPA transaction
+2025-06-23 10:28:54.887 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:54.887 DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        locations
+        (address, description, name, id) 
+    values
+        (?, ?, ?, default)
+2025-06-23 10:28:54.888 DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Created HttpSession as SecurityContext is non-default
+2025-06-23 10:28:54.888 DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=adminuser, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]] to HttpSession [org.springframework.mock.web.MockHttpSession@48158b86]
+2025-06-23 10:28:54.889 DEBUG o.s.security.web.FilterChainProxy - Securing POST /events
+2025-06-23 10:28:54.890 DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=adminuser, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]]
+2025-06-23 10:28:54.890 DEBUG o.s.security.web.FilterChainProxy - Secured POST /events
+2025-06-23 10:28:54.903 INFO  c.e.demo.controller.EventController - Attempting to save event: 
+2025-06-23 10:28:54.903 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(456820369<open>)] for JPA transaction
+2025-06-23 10:28:54.904 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:54.904 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(456820369<open>)] for JPA transaction
+2025-06-23 10:28:54.904 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:54.911 DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.email,
+        p1_0.name,
+        p1_0.phone 
+    from
+        participants p1_0
+2025-06-23 10:28:54.912 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(456820369<open>)] for JPA transaction
+2025-06-23 10:28:54.912 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:54.912 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(456820369<open>)] for JPA transaction
+2025-06-23 10:28:54.912 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:54.913 DEBUG org.hibernate.SQL - 
+    select
+        l1_0.id,
+        l1_0.address,
+        l1_0.description,
+        l1_0.name 
+    from
+        locations l1_0
+2025-06-23 10:28:54.913 WARN  c.e.demo.controller.EventController - Validation errors occurred for event : [Field error in object 'event' on field 'name': rejected value []; codes [Size.event.name,Size.name,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [event.name,name]; arguments []; default message [name],100,3]; default message [Name must be between 3 and 100 characters], Field error in object 'event' on field 'name': rejected value []; codes [NotBlank.event.name,NotBlank.name,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [event.name,name]; arguments []; default message [name]]; default message [Name cannot be empty]]
+2025-06-23 10:28:55.049 DEBUG o.s.orm.jpa.JpaTransactionManager - Initiating transaction rollback
+2025-06-23 10:28:55.049 DEBUG o.s.orm.jpa.JpaTransactionManager - Rolling back JPA transaction on EntityManager [SessionImpl(456820369<open>)]
+2025-06-23 10:28:55.049 DEBUG o.s.orm.jpa.JpaTransactionManager - Closing JPA EntityManager [SessionImpl(456820369<open>)] after transaction
+2025-06-23 10:28:55.050 DEBUG o.s.orm.jpa.JpaTransactionManager - Creating new transaction with name [com.example.demo.controller.EventControllerIntegrationTest.testListEvents]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-06-23 10:28:55.051 DEBUG o.s.orm.jpa.JpaTransactionManager - Opened new EntityManager [SessionImpl(72563193<open>)] for JPA transaction
+2025-06-23 10:28:55.051 DEBUG o.s.orm.jpa.JpaTransactionManager - Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@1ccb0482]
+2025-06-23 10:28:55.052 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(72563193<open>)] for JPA transaction
+2025-06-23 10:28:55.052 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:55.052 DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        participants
+        (email, name, phone, id) 
+    values
+        (?, ?, ?, default)
+2025-06-23 10:28:55.053 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(72563193<open>)] for JPA transaction
+2025-06-23 10:28:55.053 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:55.053 DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        locations
+        (address, description, name, id) 
+    values
+        (?, ?, ?, default)
+2025-06-23 10:28:55.054 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(72563193<open>)] for JPA transaction
+2025-06-23 10:28:55.054 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:55.054 DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        events
+        (description, end_time, location_id, name, organizer_id, start_time, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+2025-06-23 10:28:55.054 DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Created HttpSession as SecurityContext is non-default
+2025-06-23 10:28:55.055 DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=testuser, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN, ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN, ROLE_USER]]] to HttpSession [org.springframework.mock.web.MockHttpSession@75e1a63e]
+2025-06-23 10:28:55.055 DEBUG o.s.security.web.FilterChainProxy - Securing GET /events
+2025-06-23 10:28:55.055 DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=testuser, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN, ROLE_USER]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN, ROLE_USER]]]
+2025-06-23 10:28:55.055 DEBUG o.s.security.web.FilterChainProxy - Secured GET /events
+2025-06-23 10:28:55.057 INFO  c.e.demo.controller.EventController - Request to list events. Page: 0, Size: 10, SortBy: startTime, SortDir: asc
+2025-06-23 10:28:55.057 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(72563193<open>)] for JPA transaction
+2025-06-23 10:28:55.057 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:55.057 DEBUG c.example.demo.service.EventService - Fetching events with pageable: Page request [number: 0, size 10, sort: startTime: ASC]
+2025-06-23 10:28:55.057 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(72563193<open>)] for JPA transaction
+2025-06-23 10:28:55.057 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:55.061 DEBUG org.hibernate.SQL - 
+    select
+        e1_0.id,
+        e1_0.description,
+        e1_0.end_time,
+        e1_0.location_id,
+        e1_0.name,
+        e1_0.organizer_id,
+        e1_0.start_time 
+    from
+        events e1_0 
+    order by
+        e1_0.start_time 
+    offset
+        ? rows 
+    fetch
+        first ? rows only
+2025-06-23 10:28:55.076 DEBUG o.s.orm.jpa.JpaTransactionManager - Initiating transaction rollback
+2025-06-23 10:28:55.076 DEBUG o.s.orm.jpa.JpaTransactionManager - Rolling back JPA transaction on EntityManager [SessionImpl(72563193<open>)]
+2025-06-23 10:28:55.077 DEBUG o.s.orm.jpa.JpaTransactionManager - Closing JPA EntityManager [SessionImpl(72563193<open>)] after transaction
+2025-06-23 10:28:55.078 DEBUG o.s.orm.jpa.JpaTransactionManager - Creating new transaction with name [com.example.demo.controller.EventControllerIntegrationTest.testSaveEventSuccess]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-06-23 10:28:55.078 DEBUG o.s.orm.jpa.JpaTransactionManager - Opened new EntityManager [SessionImpl(1691285511<open>)] for JPA transaction
+2025-06-23 10:28:55.078 DEBUG o.s.orm.jpa.JpaTransactionManager - Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@7116f350]
+2025-06-23 10:28:55.080 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(1691285511<open>)] for JPA transaction
+2025-06-23 10:28:55.080 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:55.081 DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        participants
+        (email, name, phone, id) 
+    values
+        (?, ?, ?, default)
+2025-06-23 10:28:55.082 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(1691285511<open>)] for JPA transaction
+2025-06-23 10:28:55.082 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:55.082 DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        locations
+        (address, description, name, id) 
+    values
+        (?, ?, ?, default)
+2025-06-23 10:28:55.082 DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Created HttpSession as SecurityContext is non-default
+2025-06-23 10:28:55.083 DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=adminuser, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]] to HttpSession [org.springframework.mock.web.MockHttpSession@3269e790]
+2025-06-23 10:28:55.083 DEBUG o.s.security.web.FilterChainProxy - Securing POST /events
+2025-06-23 10:28:55.083 DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=adminuser, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]]
+2025-06-23 10:28:55.084 DEBUG o.s.security.web.FilterChainProxy - Secured POST /events
+2025-06-23 10:28:55.084 INFO  c.e.demo.controller.EventController - Attempting to save event: New Event
+2025-06-23 10:28:55.084 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(1691285511<open>)] for JPA transaction
+2025-06-23 10:28:55.084 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:55.085 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(1691285511<open>)] for JPA transaction
+2025-06-23 10:28:55.085 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:55.085 DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.email,
+        p1_0.name,
+        p1_0.phone 
+    from
+        participants p1_0
+2025-06-23 10:28:55.086 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(1691285511<open>)] for JPA transaction
+2025-06-23 10:28:55.086 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:55.086 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(1691285511<open>)] for JPA transaction
+2025-06-23 10:28:55.086 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:55.086 DEBUG org.hibernate.SQL - 
+    select
+        l1_0.id,
+        l1_0.address,
+        l1_0.description,
+        l1_0.name 
+    from
+        locations l1_0
+2025-06-23 10:28:55.086 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(1691285511<open>)] for JPA transaction
+2025-06-23 10:28:55.086 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:55.087 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(1691285511<open>)] for JPA transaction
+2025-06-23 10:28:55.087 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:55.087 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(1691285511<open>)] for JPA transaction
+2025-06-23 10:28:55.087 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:55.087 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(1691285511<open>)] for JPA transaction
+2025-06-23 10:28:55.087 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:55.087 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(1691285511<open>)] for JPA transaction
+2025-06-23 10:28:55.087 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:55.087 INFO  c.example.demo.service.EventService - Saving event: New Event
+2025-06-23 10:28:55.087 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(1691285511<open>)] for JPA transaction
+2025-06-23 10:28:55.087 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:55.088 DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        events
+        (description, end_time, location_id, name, organizer_id, start_time, id) 
+    values
+        (?, ?, ?, ?, ?, ?, default)
+2025-06-23 10:28:55.088 INFO  c.example.demo.service.EventService - Event saved successfully with ID: 3
+2025-06-23 10:28:55.095 DEBUG org.hibernate.SQL - 
+    select
+        epr1_0.event_id,
+        epr1_0.participant_id 
+    from
+        event_participants epr1_0 
+    where
+        epr1_0.event_id=?
+2025-06-23 10:28:55.098 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(1691285511<open>)] for JPA transaction
+2025-06-23 10:28:55.098 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:55.099 INFO  c.e.demo.controller.EventController - Event New Event saved successfully, redirecting to /events.
+2025-06-23 10:28:55.101 DEBUG o.s.orm.jpa.JpaTransactionManager - Initiating transaction rollback
+2025-06-23 10:28:55.101 DEBUG o.s.orm.jpa.JpaTransactionManager - Rolling back JPA transaction on EntityManager [SessionImpl(1691285511<open>)]
+2025-06-23 10:28:55.101 DEBUG o.s.orm.jpa.JpaTransactionManager - Closing JPA EntityManager [SessionImpl(1691285511<open>)] after transaction
+2025-06-23 10:28:55.102 DEBUG o.s.orm.jpa.JpaTransactionManager - Creating new transaction with name [com.example.demo.controller.EventControllerIntegrationTest.testShowCreateForm]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT
+2025-06-23 10:28:55.103 DEBUG o.s.orm.jpa.JpaTransactionManager - Opened new EntityManager [SessionImpl(453236098<open>)] for JPA transaction
+2025-06-23 10:28:55.103 DEBUG o.s.orm.jpa.JpaTransactionManager - Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@162304e3]
+2025-06-23 10:28:55.104 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(453236098<open>)] for JPA transaction
+2025-06-23 10:28:55.104 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:55.105 DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        participants
+        (email, name, phone, id) 
+    values
+        (?, ?, ?, default)
+2025-06-23 10:28:55.106 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(453236098<open>)] for JPA transaction
+2025-06-23 10:28:55.106 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:55.106 DEBUG org.hibernate.SQL - 
+    insert 
+    into
+        locations
+        (address, description, name, id) 
+    values
+        (?, ?, ?, default)
+2025-06-23 10:28:55.107 DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Created HttpSession as SecurityContext is non-default
+2025-06-23 10:28:55.107 DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Stored SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=adminuser, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]] to HttpSession [org.springframework.mock.web.MockHttpSession@2d43bedb]
+2025-06-23 10:28:55.107 DEBUG o.s.security.web.FilterChainProxy - Securing GET /events/new
+2025-06-23 10:28:55.108 DEBUG o.s.s.w.c.HttpSessionSecurityContextRepository - Retrieved SecurityContextImpl [Authentication=UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=adminuser, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, CredentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]]
+2025-06-23 10:28:55.108 DEBUG o.s.security.web.FilterChainProxy - Secured GET /events/new
+2025-06-23 10:28:55.108 INFO  c.e.demo.controller.EventController - Displaying create new event form.
+2025-06-23 10:28:55.108 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(453236098<open>)] for JPA transaction
+2025-06-23 10:28:55.108 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:55.108 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(453236098<open>)] for JPA transaction
+2025-06-23 10:28:55.108 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:55.109 DEBUG org.hibernate.SQL - 
+    select
+        p1_0.id,
+        p1_0.email,
+        p1_0.name,
+        p1_0.phone 
+    from
+        participants p1_0
+2025-06-23 10:28:55.110 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(453236098<open>)] for JPA transaction
+2025-06-23 10:28:55.110 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:55.110 DEBUG o.s.orm.jpa.JpaTransactionManager - Found thread-bound EntityManager [SessionImpl(453236098<open>)] for JPA transaction
+2025-06-23 10:28:55.110 DEBUG o.s.orm.jpa.JpaTransactionManager - Participating in existing transaction
+2025-06-23 10:28:55.111 DEBUG org.hibernate.SQL - 
+    select
+        l1_0.id,
+        l1_0.address,
+        l1_0.description,
+        l1_0.name 
+    from
+        locations l1_0
+2025-06-23 10:28:55.124 DEBUG o.s.orm.jpa.JpaTransactionManager - Initiating transaction rollback
+2025-06-23 10:28:55.124 DEBUG o.s.orm.jpa.JpaTransactionManager - Rolling back JPA transaction on EntityManager [SessionImpl(453236098<open>)]
+2025-06-23 10:28:55.124 DEBUG o.s.orm.jpa.JpaTransactionManager - Closing JPA EntityManager [SessionImpl(453236098<open>)] after transaction
+2025-06-23 10:28:55.129 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-23 10:28:55.131 INFO  o.s.j.d.e.EmbeddedDatabaseFactory - Shutting down embedded database: url='jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false'
+2025-06-23 10:44:31.830 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-06-23 10:44:31.854 INFO  o.s.j.d.e.EmbeddedDatabaseFactory - Shutting down embedded database: url='jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false'
+2025-06-23 10:44:32.991 INFO  c.e.d.ConnectGatherMonolithicApplication - Starting ConnectGatherMonolithicApplication using Java 23.0.1 with PID 24502 (/Users/ciprian.amza/Downloads/demo 2/target/classes started by ciprian.amza in /Users/ciprian.amza/Downloads/demo 2)
+2025-06-23 10:44:32.994 DEBUG c.e.d.ConnectGatherMonolithicApplication - Running with Spring Boot v3.3.1, Spring v6.1.10
+2025-06-23 10:44:32.995 INFO  c.e.d.ConnectGatherMonolithicApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-23 10:44:33.532 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-23 10:44:33.571 INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 33 ms. Found 4 JPA repository interfaces.
+2025-06-23 10:44:34.050 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-23 10:44:34.059 INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-23 10:44:34.059 INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.25]
+2025-06-23 10:44:34.086 INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-23 10:44:34.086 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1057 ms
+2025-06-23 10:44:34.131 INFO  o.s.j.d.e.EmbeddedDatabaseFactory - Starting embedded database: url='jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2025-06-23 10:44:34.233 INFO  o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2025-06-23 10:44:34.361 DEBUG o.s.o.j.LocalContainerEntityManagerFactoryBean - Building JPA container EntityManagerFactory for persistence unit 'default'
+2025-06-23 10:44:34.369 INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-23 10:44:34.403 INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2025-06-23 10:44:34.423 INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-06-23 10:44:34.546 INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-23 10:44:34.993 INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-23 10:44:35.008 DEBUG org.hibernate.SQL - 
+    alter table if exists participants 
+       alter column phone set data type varchar(255)
+2025-06-23 10:44:35.012 INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-23 10:44:35.069 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:44:35.084 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:44:35.111 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:44:35.126 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:44:35.126 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:44:35.136 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:44:35.162 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:44:35.167 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:44:35.168 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:44:35.169 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:44:35.189 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:44:35.190 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:44:35.191 DEBUG o.s.o.j.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler - Creating new EntityManager for shared EntityManager invocation
+2025-06-23 10:44:35.251 WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-23 10:44:35.272 INFO  o.s.s.p.JdbcUserDetailsManager - No authentication manager set. Reauthentication of users when changing passwords will not be performed.
+2025-06-23 10:44:35.290 INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2025-06-23 10:44:35.480 INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-06-23 10:44:35.514 DEBUG o.s.s.web.DefaultSecurityFilterChain - Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, CsrfFilter, LogoutFilter, UsernamePasswordAuthenticationFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-06-23 10:44:35.710 INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-06-23 10:44:35.726 INFO  c.e.d.ConnectGatherMonolithicApplication - Started ConnectGatherMonolithicApplication in 3.096 seconds (process running for 3.638)
