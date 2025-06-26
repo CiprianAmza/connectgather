@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  mysql_db:
+    image: mysql:8.0 # Poți folosi și alte versiuni, ex: mysql:latest
+    container_name: connectgather_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password # SCHIMBĂ ACEASTA! TREBUIE SĂ FIE ACELAȘI CU CE DIN application.properties
+      MYSQL_DATABASE: connectgatherdb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user_password # Poți defini un user separat dacă vrei
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck: # Healthcheck pentru a asigura că baza de date este gata
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 10s
+      retries: 5
+
+volumes:
+  mysql_data: # Definește un volum pentru persistența datelor MySQL

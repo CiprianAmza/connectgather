@@ -11,14 +11,25 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
+
 @Service
 public class LocationService {
 
     private final LocationRepository locationRepository;
+    private final Counter locationCreationCounter;
+    private final Counter locationDeletionCounter;
 
     @Autowired
-    public LocationService(LocationRepository locationRepository) {
+    public LocationService(LocationRepository locationRepository, MeterRegistry meterRegistry) {
         this.locationRepository = locationRepository;
+        this.locationCreationCounter = Counter.builder("locations_created_total")
+                .description("Total number of locations created or updated")
+                .register(meterRegistry);
+        this.locationDeletionCounter = Counter.builder("locations_deleted_total")
+                .description("Total number of locations deleted")
+                .register(meterRegistry);
     }
 
     @Transactional(readOnly = true)
@@ -43,8 +54,9 @@ public class LocationService {
 
     @Transactional
     public Location saveLocation(Location location) {
-        // Poți adăuga aici logica de business, ex: verificare unicitate nume înainte de salvare
-        return locationRepository.save(location);
+        Location savedLocation = locationRepository.save(location);
+        locationCreationCounter.increment();
+        return savedLocation;
     }
 
     @Transactional
@@ -65,5 +77,6 @@ public class LocationService {
             throw new IllegalArgumentException("Locația nu a fost găsită cu id: " + id);
         }
         locationRepository.deleteById(id);
+        locationDeletionCounter.increment();
     }
 }

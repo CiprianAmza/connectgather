@@ -27,7 +27,6 @@ public class ParticipantController {
         this.participantService = participantService;
     }
 
-    // Listarea participanților cu paginare și sortare
     @GetMapping
     public String listParticipants(
             @RequestParam(defaultValue = "0") int page,
@@ -48,17 +47,15 @@ public class ParticipantController {
         model.addAttribute("sortDir", sortDir);
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 
-        return "participants/list"; // Va căuta src/main/resources/templates/participants/list.html
+        return "participants/list";
     }
 
-    // Afișează formularul pentru a adăuga un participant nou
     @GetMapping("/new")
     public String showCreateForm(Model model) {
         model.addAttribute("participant", new Participant());
-        return "participants/form"; // Va căuta src/main/resources/templates/participants/form.html
+        return "participants/form";
     }
 
-    // Procesează adăugarea/editarea unui participant
     @PostMapping
     public String saveParticipant(@Valid @ModelAttribute("participant") Participant participant,
                                   BindingResult bindingResult,
@@ -67,7 +64,6 @@ public class ParticipantController {
             return "participants/form";
         }
 
-        // Verifică unicitatea email-ului la crearea unui participant nou
         if (participant.getId() == null || participantService.findParticipantById(participant.getId()).isEmpty()) {
             Optional<Participant> existingEmail = participantService.findParticipantByName(participant.getEmail());
             if (existingEmail.isPresent() && !existingEmail.get().getId().equals(participant.getId())) {
@@ -81,7 +77,6 @@ public class ParticipantController {
         return "redirect:/participants";
     }
 
-    // Afișează formularul pentru a edita un participant existent
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
         Optional<Participant> participant = participantService.findParticipantById(id);
@@ -94,7 +89,6 @@ public class ParticipantController {
         }
     }
 
-    // Șterge un participant
     @GetMapping("/delete/{id}")
     public String deleteParticipant(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         try {

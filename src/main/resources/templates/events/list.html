@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>ConnectGather - Evenimente</title>
+    <title>ConnectGather - Lista Evenimentelor</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
@@ -15,6 +15,7 @@
     <a href="/events/new" class="btn btn-primary mb-3">Adaugă Eveniment Nou</a>
     <a href="/participants" class="btn btn-info mb-3 ml-2">Vezi Participanți</a>
     <a href="/locations" class="btn btn-info mb-3 ml-2">Vezi Locații</a>
+    <a href="/organizers" class="btn btn-info mb-3 ml-2">Vezi Organizatori</a> <!-- NOU: Buton pentru Organizatori -->
 
 
     <table class="table table-striped table-hover">
@@ -26,7 +27,10 @@
             <th><a th:href="@{/events(page=${currentPage}, size=${pageSize}, sortBy='endTime', sortDir=${sortBy == 'endTime' ? reverseSortDir : 'asc'})}">Data/Ora Sfârșitului</a></th>
             <th>Locație</th>
             <th>Organizator</th>
-            <th>Participanți</th> <!-- NOU: Coloana pentru Participanți -->
+            <th>Capacitate</th>
+            <th>Catering</th>
+            <th>Echipament</th>
+            <th>Participanți</th>
             <th>Acțiuni</th>
         </tr>
         </thead>
@@ -38,9 +42,21 @@
             <td th:text="${#temporals.format(event.endTime, 'dd-MM-yyyy HH:mm')}"></td>
             <td th:text="${event.location != null ? event.location.name : 'N/A'}"></td>
             <td th:text="${event.organizer != null ? event.organizer.name : 'N/A'}"></td>
-            <td> <!-- NOU: Afișează lista de participanți -->
-                <span th:each="ep : ${event.eventParticipants}">
-                    <span th:text="${ep.participant.name}"></span><span th:if="${!#sets.last(event.eventParticipants)}">, </span>
+            <td>
+                <span th:if="${event.eventDetails != null}" th:text="${event.eventDetails.venueCapacity}"></span>
+                <span th:if="${event.eventDetails == null}">N/A</span>
+            </td>
+            <td>
+                <span th:if="${event.eventDetails != null}" th:text="${event.eventDetails.cateringOption ? 'Da' : 'Nu'}"></span>
+                <span th:if="${event.eventDetails == null}">N/A</span>
+            </td>
+            <td>
+                <span th:if="${event.eventDetails != null}" th:text="${event.eventDetails.requiredEquipment ?: 'N/A'}"></span>
+                <span th:if="${event.eventDetails == null}">N/A</span>
+            </td>
+            <td>
+                <span th:each="ep, epStat : ${event.eventParticipants}">
+                    <span th:text="${ep.participant.name}"></span><span th:if="${!epStat.last}">, </span>
                 </span>
                 <span th:if="${#sets.isEmpty(event.eventParticipants)}">Niciun participant</span>
             </td>

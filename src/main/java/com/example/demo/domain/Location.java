@@ -19,7 +19,7 @@ public class Location {
 
     @NotBlank(message = "Numele locației nu poate fi gol")
     @Size(min = 3, max = 100, message = "Numele locației trebuie să aibă între 3 și 100 de caractere")
-    @Column(unique = true) // Asigură unicitatea numelui locației
+    @Column(unique = true)
     private String name;
 
     @NotBlank(message = "Adresa nu poate fi goală")
@@ -29,18 +29,15 @@ public class Location {
     @Size(max = 255, message = "Descrierea poate avea maxim 255 de caractere")
     private String description;
 
-    // Constructor implicit necesar pentru JPA
     public Location() {
     }
 
-    // Constructor cu argumente
     public Location(String name, String address, String description) {
         this.name = name;
         this.address = address;
         this.description = description;
     }
 
-    // Getters și Setters
     public Long getId() {
         return id;
     }

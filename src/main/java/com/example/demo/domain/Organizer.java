@@ -7,8 +7,8 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "participants")
-public class Participant {
+@Table(name = "organizers")
+public class Organizer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,10 +27,10 @@ public class Participant {
     @Pattern(regexp = "^\\+?[0-9. ()-]{7,25}$", message = "Format telefon invalid")
     private String phone;
 
-    public Participant() {
+    public Organizer() {
     }
 
-    public Participant(String name, String email, String phone) {
+    public Organizer(String name, String email, String phone) {
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -70,7 +70,7 @@ public class Participant {
 
     @Override
     public String toString() {
-        return "Participant{" +
+        return "Organizer{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +

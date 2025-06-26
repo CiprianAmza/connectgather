@@ -6,8 +6,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.time.LocalDateTime;
-import java.util.HashSet; // Sau ArrayList
-import java.util.Set; // Sau List
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "events")
@@ -35,26 +35,25 @@ public class Event {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "location_id", nullable = false)
-//    @NotNull(message = "Un eveniment trebuie să aibă o locație!")
     private Location location;
 
+    // NOU: Acum organizer este de tip Organizer, nu Participant
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organizer_id", nullable = false)
-//    @NotNull(message = "Un eveniment trebuie să aibă un organizator!")
-    private Participant organizer;
+    private Organizer organizer; // Schimbat de la Participant la Organizer
 
-    // NOU: Relația One-to-Many către EventParticipantRelation
-    // 'mappedBy' indică câmpul din EventParticipantRelation care mapează această relație
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<EventParticipantRelation> eventParticipants = new HashSet<>();
 
+    @OneToOne(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private EventDetails eventDetails;
 
-    // Constructor implicit necesar pentru JPA
+
     public Event() {
     }
 
-    // Constructor cu argumente
-    public Event(String name, String description, LocalDateTime startTime, LocalDateTime endTime, Location location, Participant organizer) {
+    // NOU: Constructor actualizat pentru a folosi Organizer
+    public Event(String name, String description, LocalDateTime startTime, LocalDateTime endTime, Location location, Organizer organizer) {
         this.name = name;
         this.description = description;
         this.startTime = startTime;
@@ -63,7 +62,20 @@ public class Event {
         this.organizer = organizer;
     }
 
-    // Getters and Setters
+    // NOU: Constructor actualizat pentru a folosi Organizer
+    public Event(String name, String description, LocalDateTime startTime, LocalDateTime endTime, Location location, Organizer organizer, EventDetails eventDetails) {
+        this.name = name;
+        this.description = description;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.location = location;
+        this.organizer = organizer;
+        if (eventDetails != null) {
+            this.eventDetails = eventDetails;
+            eventDetails.setEvent(this);
+        }
+    }
+
     public Long getId() {
         return id;
     }
@@ -112,15 +124,15 @@ public class Event {
         this.location = location;
     }
 
-    public Participant getOrganizer() {
+    // NOU: Getter/Setter pentru Organizer
+    public Organizer getOrganizer() {
         return organizer;
     }
 
-    public void setOrganizer(Participant organizer) {
+    public void setOrganizer(Organizer organizer) {
         this.organizer = organizer;
     }
 
-    // NOU: Getter și Setter pentru eventParticipants
     public Set<EventParticipantRelation> getEventParticipants() {
         return eventParticipants;
     }
@@ -129,7 +141,6 @@ public class Event {
         this.eventParticipants = eventParticipants;
     }
 
-    // Metode ajutătoare pentru a adăuga/elimina participanți într-o manieră bidirectională
     public void addParticipant(Participant participant) {
         EventParticipantRelation relation = new EventParticipantRelation(this, participant);
         this.eventParticipants.add(relation);
@@ -142,6 +153,22 @@ public class Event {
         relation.setParticipant(null);
     }
 
+    public EventDetails getEventDetails() {
+        return eventDetails;
+    }
+
+    public void setEventDetails(EventDetails eventDetails) {
+        if (eventDetails != null) {
+            this.eventDetails = eventDetails;
+            eventDetails.setEvent(this);
+        } else {
+            if (this.eventDetails != null) {
+                this.eventDetails.setEvent(null);
+            }
+            this.eventDetails = null;
+        }
+    }
+
     @Override
     public String toString() {
         return "Event{" +
@@ -151,8 +178,9 @@ public class Event {
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
                 ", location=" + (location != null ? location.getName() : "null") +
-                ", organizer=" + (organizer != null ? organizer.getName() : "null") +
-                ", numParticipants=" + eventParticipants.size() + // Afișăm numărul de participanți
+                ", organizer=" + (organizer != null ? organizer.getName() : "null") + // Actualizat pentru Organizer
+                ", numParticipants=" + eventParticipants.size() +
+                ", eventDetails=" + (eventDetails != null ? "present" : "null") +
                 '}';
     }
 }

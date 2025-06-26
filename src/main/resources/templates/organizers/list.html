@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>ConnectGather - Lista Organizatorilor</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container my-4">
+    <h2 class="mb-4">Lista Organizatorilor</h2>
+
+    <div th:if="${message}" class="alert alert-success" role="alert" th:text="${message}"></div>
+    <div th:if="${error}" class="alert alert-danger" role="alert" th:text="${error}"></div>
+
+    <a href="/organizers/new" class="btn btn-primary mb-3">Adaugă Organizator Nou</a>
+    <a href="/events" class="btn btn-info mb-3 ml-2">Vezi Evenimente</a>
+    <a href="/participants" class="btn btn-info mb-3 ml-2">Vezi Participanți</a>
+    <a href="/locations" class="btn btn-info mb-3 ml-2">Vezi Locații</a>
+
+    <table class="table table-striped table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th><a th:href="@{/organizers(page=${currentPage}, size=${pageSize}, sortBy='name', sortDir=${sortBy == 'name' ? reverseSortDir : 'asc'})}">Nume</a></th>
+            <th><a th:href="@{/organizers(page=${currentPage}, size=${pageSize}, sortBy='email', sortDir=${sortBy == 'email' ? reverseSortDir : 'asc'})}">Email</a></th>
+            <th>Telefon</th>
+            <th>Acțiuni</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="organizer : ${organizersPage.content}">
+            <td th:text="${organizer.name}"></td>
+            <td th:text="${organizer.email}"></td>
+            <td th:text="${organizer.phone}"></td>
+            <td>
+                <a th:href="@{/organizers/edit/{id}(id=${organizer.id})}" class="btn btn-sm btn-info">Edit</a>
+                <a th:href="@{/organizers/delete/{id}(id=${organizer.id})}" class="btn btn-sm btn-danger" onclick="return confirm('Ești sigur că vrei să ștergi acest organizator?');">Șterge</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <nav aria-label="Page navigation" th:if="${organizersPage.totalPages > 1}">
+        <ul class="pagination">
+            <li class="page-item" th:classappend="${currentPage == 0 ? 'disabled' : ''}">
+                <a class="page-link" th:href="@{/organizers(page=${currentPage - 1}, size=${pageSize}, sortBy=${sortBy}, sortDir=${sortDir})}">Precedentă</a>
+            </li>
+            <li class="page-item" th:each="i : ${#numbers.sequence(0, organizersPage.totalPages - 1)}"
+                th:classappend="${i == currentPage ? 'active' : ''}">
+                <a class="page-link" th:href="@{/organizers(page=${i}, size=${pageSize}, sortBy=${sortBy}, sortDir=${sortDir})}" th:text="${i + 1}"></a>
+            </li>
+            <li class="page-item" th:classappend="${currentPage == organizersPage.totalPages - 1 ? 'disabled' : ''}">
+                <a class="page-link" th:href="@{/organizers(page=${currentPage + 1}, size=${pageSize}, sortBy=${sortBy}, sortDir=${sortDir})}">Următoare</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+</body>
+</html>

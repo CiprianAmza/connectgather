@@ -1,9 +1,14 @@
 package com.example.demo.service;
 
 import com.example.demo.domain.Event;
+import com.example.demo.domain.EventDetails;
 import com.example.demo.domain.EventParticipantRelation;
+import com.example.demo.domain.Location;
+import com.example.demo.domain.Organizer; // NOU: Import pentru Organizer
+import com.example.demo.domain.Participant;
 import com.example.demo.repository.EventParticipantRelationRepository;
 import com.example.demo.repository.EventRepository;
+import com.example.demo.repository.OrganizerRepository; // NOU: Import pentru OrganizerRepository
 import com.example.demo.repository.ParticipantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +22,8 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
 
 @Service
 public class EventService {
@@ -26,14 +33,27 @@ public class EventService {
     private final EventRepository eventRepository;
     private final EventParticipantRelationRepository eventParticipantRelationRepository;
     private final ParticipantRepository participantRepository;
+    private final OrganizerRepository organizerRepository; // NOU: Injectează OrganizerRepository
+    private final Counter eventCreationCounter;
+    private final Counter eventDeletionCounter;
+
 
     @Autowired
     public EventService(EventRepository eventRepository,
                         EventParticipantRelationRepository eventParticipantRelationRepository,
-                        ParticipantRepository participantRepository) {
+                        ParticipantRepository participantRepository,
+                        OrganizerRepository organizerRepository, // NOU: Adaugă în constructor
+                        MeterRegistry meterRegistry) {
         this.eventRepository = eventRepository;
         this.eventParticipantRelationRepository = eventParticipantRelationRepository;
         this.participantRepository = participantRepository;
+        this.organizerRepository = organizerRepository; // NOU: Inițializare
+        this.eventCreationCounter = Counter.builder("events.created.total")
+                .description("Total number of events created or updated")
+                .register(meterRegistry);
+        this.eventDeletionCounter = Counter.builder("events.deleted.total")
+                .description("Total number of events deleted")
+                .register(meterRegistry);
     }
 
     @Transactional(readOnly = true)
@@ -58,10 +78,14 @@ public class EventService {
     public Event saveEvent(Event event, Set<Long> selectedParticipantIds) {
         logger.info("Attempting to save event: {}", event.getName());
 
+        // Asigurăm legătura bidirecțională înainte de a salva evenimentul principal.
+        if (event.getEventDetails() != null) {
+            event.getEventDetails().setEvent(event);
+        }
+
         Event savedEvent = eventRepository.save(event);
         logger.debug("Event initially saved/updated with ID: {}", savedEvent.getId());
 
-        // Gestionează relația Many-to-Many cu participanți
         if (selectedParticipantIds != null) {
             logger.debug("Processing {} selected participant IDs for event ID: {}", selectedParticipantIds.size(), savedEvent.getId());
             eventParticipantRelationRepository.deleteByEventId(savedEvent.getId());
@@ -80,14 +104,13 @@ public class EventService {
             logger.debug("No participants selected for event {}. Clearing existing relations.", savedEvent.getName());
         }
 
-        Event finalSavedEvent = eventRepository.save(savedEvent); // Re-salvează pentru a persista modificările relației OneToMany
-        logger.info("Event {} (ID: {}) saved successfully with participants.", finalSavedEvent.getName(), finalSavedEvent.getId());
-        return finalSavedEvent;
+        eventCreationCounter.increment();
+        return eventRepository.save(savedEvent);
     }
 
 
     @Transactional
-    public Event updateEvent(Long id, Event eventDetails, Set<Long> selectedParticipantIds) {
+    public Event updateEvent(Long id, Event eventDetailsUpdate, Set<Long> selectedParticipantIds) {
         logger.info("Updating event with ID: {}", id);
         Event existingEvent = eventRepository.findById(id)
                 .orElseThrow(() -> {
@@ -95,12 +118,33 @@ public class EventService {
                     return new IllegalArgumentException("Evenimentul nu a fost găsit cu id: " + id);
                 });
 
-        existingEvent.setName(eventDetails.getName());
-        existingEvent.setDescription(eventDetails.getDescription());
-        existingEvent.setStartTime(eventDetails.getStartTime());
-        existingEvent.setEndTime(eventDetails.getEndTime());
-        existingEvent.setLocation(eventDetails.getLocation());
-        existingEvent.setOrganizer(eventDetails.getOrganizer());
+        existingEvent.setName(eventDetailsUpdate.getName());
+        existingEvent.setDescription(eventDetailsUpdate.getDescription());
+        existingEvent.setStartTime(eventDetailsUpdate.getStartTime());
+        existingEvent.setEndTime(eventDetailsUpdate.getEndTime());
+        existingEvent.setLocation(eventDetailsUpdate.getLocation());
+        // NOU: Setăm organizatorul pe baza Organizer-ului trimis, nu a Participant-ului
+        existingEvent.setOrganizer(eventDetailsUpdate.getOrganizer());
+
+        if (eventDetailsUpdate.getEventDetails() != null) {
+            if (existingEvent.getEventDetails() == null) {
+                existingEvent.setEventDetails(eventDetailsUpdate.getEventDetails());
+                existingEvent.getEventDetails().setEvent(existingEvent);
+                logger.debug("New EventDetails set for event ID: {}", id);
+            } else {
+                existingEvent.getEventDetails().setVenueCapacity(eventDetailsUpdate.getEventDetails().getVenueCapacity());
+                existingEvent.getEventDetails().setCateringOption(eventDetailsUpdate.getEventDetails().getCateringOption());
+                existingEvent.getEventDetails().setRequiredEquipment(eventDetailsUpdate.getEventDetails().getRequiredEquipment());
+                logger.debug("Existing EventDetails updated for event ID: {}", id);
+            }
+        } else {
+            if (existingEvent.getEventDetails() != null) {
+                existingEvent.setEventDetails(null);
+                logger.debug("EventDetails removed for event ID: {} as no details were provided.", id);
+            } else {
+                logger.debug("No EventDetails to update or remove for event ID: {}.", id);
+            }
+        }
 
         logger.debug("Processing {} selected participant IDs for event ID {} during update.", selectedParticipantIds != null ? selectedParticipantIds.size() : 0, existingEvent.getId());
         eventParticipantRelationRepository.deleteByEventId(existingEvent.getId());
@@ -119,7 +163,7 @@ public class EventService {
         }
 
         Event updatedEvent = eventRepository.save(existingEvent);
-        logger.info("Event with ID {} updated successfully with participants.", id);
+        logger.info("Event with ID {} updated successfully with participants and details.", id);
         return updatedEvent;
     }
 
@@ -132,5 +176,6 @@ public class EventService {
         }
         eventRepository.deleteById(id);
         logger.info("Event with ID {} deleted successfully.", id);
+        eventDeletionCounter.increment();
     }
 }

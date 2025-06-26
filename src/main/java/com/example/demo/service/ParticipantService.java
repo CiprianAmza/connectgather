@@ -11,14 +11,25 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
+
 @Service
 public class ParticipantService {
 
     private final ParticipantRepository participantRepository;
+    private final Counter participantCreationCounter;
+    private final Counter participantDeletionCounter;
 
     @Autowired
-    public ParticipantService(ParticipantRepository participantRepository) {
+    public ParticipantService(ParticipantRepository participantRepository, MeterRegistry meterRegistry) {
         this.participantRepository = participantRepository;
+        this.participantCreationCounter = Counter.builder("participants.created.total")
+                .description("Total number of participants created or updated")
+                .register(meterRegistry);
+        this.participantDeletionCounter = Counter.builder("participants.deleted.total")
+                .description("Total number of participants deleted")
+                .register(meterRegistry);
     }
 
     @Transactional(readOnly = true)
@@ -43,8 +54,9 @@ public class ParticipantService {
 
     @Transactional
     public Participant saveParticipant(Participant participant) {
-        // Poți adăuga aici logica de business, ex: verificare unicitate email înainte de salvare
-        return participantRepository.save(participant);
+        Participant savedParticipant = participantRepository.save(participant);
+        participantCreationCounter.increment(); // Incrementăm contorul la adăugare/salvare
+        return savedParticipant;
     }
 
     @Transactional
@@ -65,5 +77,6 @@ public class ParticipantService {
             throw new IllegalArgumentException("Participant not found with id: " + id);
         }
         participantRepository.deleteById(id);
+        participantDeletionCounter.increment(); // Incrementăm contorul la ștergere
     }
 }

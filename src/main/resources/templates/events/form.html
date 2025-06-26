@@ -62,21 +62,21 @@
             <div class="invalid-feedback" th:if="${#fields.hasErrors('location')}" th:errors="*{location}"></div>
         </div>
 
-        <!-- Selector pentru Organizator -->
+        <!-- NOU: Selector pentru Organizator (folosind allOrganizers) -->
         <div class="form-group">
             <label for="organizer">Organizator:</label>
             <select id="organizer" name="organizerId" class="form-control" th:classappend="${#fields.hasErrors('organizer') ? 'is-invalid' : ''}" required>
                 <option value="">-- Selectează un Organizator --</option>
-                <option th:each="p : ${allParticipants}"
-                        th:value="${p.id}"
-                        th:text="${p.name}"
-                        th:selected="${event.organizer != null and event.organizer.id == p.id}">
+                <option th:each="org : ${allOrganizers}"
+                        th:value="${org.id}"
+                        th:text="${org.name}"
+                        th:selected="${event.organizer != null and event.organizer.id == org.id}">
                 </option>
             </select>
             <div class="invalid-feedback" th:if="${#fields.hasErrors('organizer')}" th:errors="*{organizer}"></div>
         </div>
 
-        <!-- NOU: Selector pentru Participanți Multipli -->
+        <!-- Selector pentru Participanți Multipli -->
         <div class="form-group">
             <label for="selectedParticipants">Participanți:</label>
             <select id="selectedParticipants" name="selectedParticipantIds" multiple class="form-control">
@@ -87,6 +87,26 @@
                 </option>
             </select>
             <small class="form-text text-muted">Ține apăsat Ctrl (Windows) / Cmd (Mac) pentru a selecta mai mulți.</small>
+        </div>
+
+        <h3>Detalii Suplimentare Eveniment (EventDetails)</h3>
+
+        <div class="form-group">
+            <label for="venueCapacity">Capacitate Locație:</label>
+            <input type="number" id="venueCapacity" th:field="*{eventDetails.venueCapacity}" class="form-control" th:classappend="${#fields.hasErrors('eventDetails.venueCapacity') ? 'is-invalid' : ''}" />
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('eventDetails.venueCapacity')}" th:errors="*{eventDetails.venueCapacity}"></div>
+        </div>
+
+        <div class="form-group form-check">
+            <input type="checkbox" id="cateringOption" th:field="*{eventDetails.cateringOption}" class="form-check-input" />
+            <label class="form-check-label" for="cateringOption">Opțiune Catering Disponibilă</label>
+            <div class="invalid-feedback d-block" th:if="${#fields.hasErrors('eventDetails.cateringOption')}" th:errors="*{eventDetails.cateringOption}"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="requiredEquipment">Echipament Necesat (Opțional):</label>
+            <textarea id="requiredEquipment" th:field="*{eventDetails.requiredEquipment}" class="form-control" rows="3" th:classappend="${#fields.hasErrors('eventDetails.requiredEquipment') ? 'is-invalid' : ''}"></textarea>
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('eventDetails.requiredEquipment')}" th:errors="*{eventDetails.requiredEquipment}"></div>
         </div>
 
         <button type="submit" class="btn btn-success">Salvează Eveniment</button>

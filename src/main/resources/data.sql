@@ -8,3 +8,7 @@ INSERT INTO participants (name, email, phone) VALUES
 
 INSERT INTO locations (name, address, description) VALUES
 ('Bucharest', 'Romania, Bucharest', 'Capital of Romania');
+INSERT INTO locations (name, address, description) VALUES
+('Pitesti', 'Romania, Arges', 'Capital of Romania');
+INSERT INTO locations (name, address, description) VALUES
+('Cluj', 'Romania, Cluj Napoca', 'Capital of Romania');
