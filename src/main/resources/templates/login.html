@@ -2,42 +2,80 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>ConnectGather - Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f4; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .login-container { background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); width: 300px; text-align: center; }
-        .login-container h2 { margin-bottom: 20px; color: #333; }
-        .login-container input[type="text"],
-        .login-container input[type="password"] { width: calc(100% - 20px); padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; }
-        .login-container button { width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
-        .login-container button:hover { background-color: #0056b3; }
-        .error { color: red; margin-bottom: 10px; }
-        .logout { color: green; margin-bottom: 10px; }
+        body {
+            background-color: #f8f9fa;
+        }
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            background-color: #ffffff;
+        }
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #343a40;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        .success-message {
+            color: green;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        .btn-primary {
+            width: 100%;
+        }
     </style>
 </head>
 <body>
-<div class="login-container">
-    <h2>Login</h2>
+<div class="container">
+    <div class="login-container">
+        <h2>Autentificare ConnectGather</h2>
 
-    <div th:if="${param.error}" class="error">
-        Username sau parolă incorecte.
+        <div th:if="${error}" class="alert alert-danger" role="alert">
+            <span th:text="${error}"></span>
+        </div>
+        <div th:if="${message}" class="alert alert-success" role="alert">
+            <span th:text="${message}"></span>
+        </div>
+
+        <!-- Formularul de login -->
+        <!-- th:action="@{/login}" specifică URL-ul la care va fi trimis formularul (la metoda POST din LoginController) -->
+        <!-- th:object="${loginRequest}" leagă formularul la obiectul LoginRequest din model -->
+        <!-- method="post" asigură că este o cerere POST -->
+        <form th:action="@{/login}" th:object="${loginRequest}" method="post">
+            <div class="form-group">
+                <label for="username">Nume de utilizator:</label>
+                <!-- th:field="*{username}" leagă acest câmp la proprietatea 'username' din obiectul 'loginRequest' -->
+                <input type="text" id="username" name="username" class="form-control" th:field="*{username}"
+                       th:classappend="${#fields.hasErrors('username') ? 'is-invalid' : ''}" required autofocus>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Parolă:</label>
+                <!-- th:field="*{password}" leagă acest câmp la proprietatea 'password' din obiectul 'loginRequest' -->
+                <input type="password" id="password" name="password" class="form-control" th:field="*{password}"
+                       th:classappend="${#fields.hasErrors('password') ? 'is-invalid' : ''}" required>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
     </div>
-
-    <div th:if="${param.logout}" class="logout">
-        Ai fost deconectat cu succes.
-    </div>
-
-    <form th:action="@{/login}" method="post">
-        <div>
-            <input type="text" id="username" name="username" placeholder="Username" required/>
-        </div>
-        <div>
-            <input type="password" id="password" name="password" placeholder="Parolă" required/>
-        </div>
-        <div>
-            <button type="submit">Login</button>
-        </div>
-    </form>
 </div>
 </body>
 </html>
