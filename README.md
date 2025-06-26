@@ -6,6 +6,8 @@
 * Andrei Dina
 * Ciprian Amza
 
+<img width="1214" alt="image" src="https://github.com/user-attachments/assets/8151fe1d-ada5-4e67-aeed-b717d1d297a9" />
+
 ## Descriere Proiect
 
 `ConnectGather-Microservices` este o aplicație web complexă, concepută ca o **platformă de management al evenimentelor**, facilitând crearea, organizarea și participarea la diverse tipuri de evenimente. Proiectul este structurat în două faze majore, reflectând cerințele examenului de master:
